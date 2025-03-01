@@ -1,3 +1,4 @@
+<!-- Code mới đã được cập nhật theo yêu cầu của bạn -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,115 +7,62 @@
     <title>Thư 8/3</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ffd6e0, #ffb6c1);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             flex-direction: column;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
         }
         .container {
             text-align: center;
         }
-        .button {
-            background: linear-gradient(90deg, #ff5e62, #ff9966);
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
-            border: none;
-            padding: 15px 25px;
+            padding: 15px 30px;
             font-size: 18px;
-            border-radius: 25px;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .button:hover {
+        .btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .letter {
             display: none;
             background: white;
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-            text-align: center;
-            width: 300px;
-            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            line-height: 1.6;
         }
-        .letter::before {
-            content: "";
-            width: 100%;
-            height: 5px;
-            background: pink;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .decor {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        .falling {
-            position: absolute;
-            color: pink;
-            font-size: 24px;
-            opacity: 0.8;
-            animation: fall 3s linear infinite;
-        }
-        @keyframes fall {
-            from { transform: translateY(-100vh); opacity: 1; }
-            to { transform: translateY(100vh); opacity: 0; }
+        .line {
+            border-bottom: 2px dashed #ff4b2b;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <button class="button" onclick="showLetter()">Mời ebe nhấn vào đây</button>
+        <button class="btn" onclick="showLetter()">Mời ebe nhấn vào đây</button>
         <div class="letter" id="letter">
-            <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
-            <button class="button" onclick="nextMessage()">Bấm tiếp</button>
+            <p>Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
+            <div class="line"></div>
+            <p>Bạn là người đặc biệt và xứng đáng nhận được những điều tốt đẹp nhất! 😘</p>
+            <div class="line"></div>
+            <p>Hy vọng ngày hôm nay sẽ ngập tràn nụ cười và niềm vui! 🌸</p>
+            <div class="line"></div>
+            <p>Chúc bạn luôn mạnh khỏe, may mắn và thành công trong mọi điều! ❤️</p>
         </div>
     </div>
-    <div class="decor" id="decor"></div>
     <script>
-        let messages = [
-            "Hí Lô! hat có phương thức mới nì hì hì:>> ",
-            "8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>. ",
-            "Nay là ngày 8/3 cũng là kỉ niệm 200 ngày ta iu nhau nên tht sự là rất đặc biệt đó nghee 🌸",
-            "Đc 200 ngày rùi nhanh tht đó, nhớ lại ngày đầu tiên lúc mà My tỏ tình hat, tr ư cô nương ơi chủ động quá làm tui tay đập tim run đó nghe 💕"
-            "Đồng thời cũng là 8/3 rùi, anh chúc em 8/3 này là 1 ngày tht tyẹt zời đặc biệt là mấy ngày sau cũng z, cứ qua 1 mốc là lại tuỵt zời hơn hạnh phúc hơn bên anh:>>"
-            "Anh iu em, thw em nhìuuu, cảm ơn em vì đã đến bên anh, là niu anh, ngthw anh"
-            "Có rất nhìu biến cố nma nay là 1 ngày đặc biệt nghe, 2 ngày đặc biệt ghép chồng nhau thì đương nhin là rất đặc biệt rùi"
-            "Có này nì, anh muốn yêu em và thương em, muốn là chỗ dựa của em bất cứ khi nào, nàng à nàng không phải phiền phức đâu nên là á đừng né anh nha"
-            "Anh cũng làm e buồn rùi, có 1 số thứ đáng ra ph nói ngay vd như là bị té hay có gì đó tệ nma cái đó hết rùi, có gì nói ngay lập tức lun đó nha, mấy ngày gần đây nè, có chi anh nói hết, vd như là anh bị nói xấu đó huhu nói liền cho ebe biết lun"
-        ];
-        let index = 0;
         function showLetter() {
             document.getElementById('letter').style.display = 'block';
-        }
-        function nextMessage() {
-            index++;
-            if (index < messages.length) {
-                document.getElementById('message').innerHTML = messages[index];
-                addEffect();
-            } else {
-                document.getElementById('message').innerHTML = "Anh iu emmmmmmm💖";
-            }
-        }
-        function addEffect() {
-            let decor = document.getElementById('decor');
-            let icon = ['💖', '🌸', '💕', '🌹'][Math.floor(Math.random() * 4)];
-            let element = document.createElement('div');
-            element.className = 'falling';
-            element.innerHTML = icon;
-            element.style.left = Math.random() * 100 + 'vw';
-            decor.appendChild(element);
-            setTimeout(() => decor.removeChild(element), 3000);
         }
     </script>
 </body>
