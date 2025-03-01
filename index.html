@@ -76,23 +76,35 @@
     <div class="container">
         <button class="button" onclick="showLetter()">Mời ebe nhấn vào đây</button>
         <div class="letter" id="letter">
-            <p>Hí Lô! hat có phương thức mới nì hì hì:>> 
-                8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>. 
-                Nay là ngày 8/3 cũng là kỉ niệm 200 ngày ta iu nhau nên tht sự là rất đặc biệt đó nghee.
-                Đc 200 ngày rùi nhanh tht đó, nhớ lại ngày đầu tiên lúc mà My tỏ tình hat, tr ư cô nương ơi chủ động quá làm tui tay đập tim run đó nghe
-                Đồng thời cũng là 8/3 rùi, anh chúc em 8/3 này là 1 ngày tht tyẹt zời đặc biệt là mấy ngày sau cũng z, cứ qua 1 mốc là lại tuỵt zời hơn hạnh phúc hơn bên anh:>>
-                Anh iu em, thw em nhìuuu, cảm ơn em vì đã đến bên anh, là niu anh, ngthw anh
-                Có rất nhìu biến cố nma nay là 1 ngày đặc biệt nghe, 2 ngày đặc biệt ghép chồng nhau thì đương nhin là rất đặc biệt rùi
-                Có này nì, anh muốn yêu em và thương em, muốn là chỗ dựa của em bất cứ khi nào, nàng à nàng không phải phiền phức đâu nên là á đừng né anh nha
-                Anh cũng làm e buồn rùi, có 1 số thứ đáng ra ph nói ngay vd như là bị té hay có gì đó tệ nma cái đó hết rùi, có gì nói ngay lập tức lun đó nha, mấy ngày gần đây nè, có chi anh nói hết, vd như là anh bị nói xấu đó huhu nói liền cho ebe biết lun
-                Anh iu emmmmmmm💖</p>
-            <button class="button" onclick="addEffect()">Iu My nhìuu</button>
+            <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
+            <button class="button" onclick="nextMessage()">Bấm tiếp</button>
         </div>
     </div>
     <div class="decor" id="decor"></div>
     <script>
+        let messages = [
+            "Hí Lô! hat có phương thức mới nì hì hì:>> ",
+            "8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>. ",
+            "Nay là ngày 8/3 cũng là kỉ niệm 200 ngày ta iu nhau nên tht sự là rất đặc biệt đó nghee 🌸",
+            "Đc 200 ngày rùi nhanh tht đó, nhớ lại ngày đầu tiên lúc mà My tỏ tình hat, tr ư cô nương ơi chủ động quá làm tui tay đập tim run đó nghe 💕"
+            "Đồng thời cũng là 8/3 rùi, anh chúc em 8/3 này là 1 ngày tht tyẹt zời đặc biệt là mấy ngày sau cũng z, cứ qua 1 mốc là lại tuỵt zời hơn hạnh phúc hơn bên anh:>>"
+            "Anh iu em, thw em nhìuuu, cảm ơn em vì đã đến bên anh, là niu anh, ngthw anh"
+            "Có rất nhìu biến cố nma nay là 1 ngày đặc biệt nghe, 2 ngày đặc biệt ghép chồng nhau thì đương nhin là rất đặc biệt rùi"
+            "Có này nì, anh muốn yêu em và thương em, muốn là chỗ dựa của em bất cứ khi nào, nàng à nàng không phải phiền phức đâu nên là á đừng né anh nha"
+            "Anh cũng làm e buồn rùi, có 1 số thứ đáng ra ph nói ngay vd như là bị té hay có gì đó tệ nma cái đó hết rùi, có gì nói ngay lập tức lun đó nha, mấy ngày gần đây nè, có chi anh nói hết, vd như là anh bị nói xấu đó huhu nói liền cho ebe biết lun"
+        ];
+        let index = 0;
         function showLetter() {
             document.getElementById('letter').style.display = 'block';
+        }
+        function nextMessage() {
+            index++;
+            if (index < messages.length) {
+                document.getElementById('message').innerHTML = messages[index];
+                addEffect();
+            } else {
+                document.getElementById('message').innerHTML = "Anh iu emmmmmmm💖";
+            }
         }
         function addEffect() {
             let decor = document.getElementById('decor');
