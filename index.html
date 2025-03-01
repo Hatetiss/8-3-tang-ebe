@@ -3,51 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư 8/3 Đặc Biệt</title>
+    <title>Thư 8/3</title>
     <style>
         body {
-            background-color: pink;
+            background-color: #ffe6f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            font-family: Arial, sans-serif;
         }
         .heart {
-            color: red;
             font-size: 50px;
             animation: heartbeat 1s infinite;
+            color: red;
         }
         @keyframes heartbeat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
+        }
+        .button {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
         }
         .letter {
             display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 300px;
             height: 200px;
-            background: #fff;
-            border-radius: 10px;
+            background: #fff8dc;
+            border: 2px solid #ffb6c1;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .show {
-            display: block;
+        .letter::before {
+            content: '\"';
+            font-size: 40px;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            color: #ff416c;
+        }
+        .letter::after {
+            content: '\"';
+            font-size: 40px;
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            color: #ff416c;
         }
     </style>
 </head>
 <body>
-    <h1 class="heart">❤</h1>
-    <button onclick="openLetter()">Nhấn vào đây</button>
-    <div id="letter" class="letter">
-        <h2>Thư Gửi Em 💌</h2>
-        <p>Chúc em 8/3 vui vẻ, luôn xinh đẹp và hạnh phúc! 💖</p>
+    <div class="heart">❤️</div>
+    <button class="button" onclick="showLetter()">Nhấn vào đây</button>
+    <div class="letter" id="letter">
+        <p>Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
     </div>
     <script>
-        function openLetter() {
-            document.getElementById("letter").classList.add("show");
+        function showLetter() {
+            document.getElementById("letter").style.display = "block";
         }
     </script>
 </body>
