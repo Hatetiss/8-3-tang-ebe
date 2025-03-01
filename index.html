@@ -9,36 +9,38 @@ export default function LoveLetter() {
     "Hy vọng ngày hôm nay sẽ ngập tràn nụ cười và niềm vui! 🌸",
     "Chúc bạn luôn mạnh khỏe, may mắn và thành công trong mọi điều! ❤️",
     "Mỗi ngày bên bạn là một ngày hạnh phúc! 💕",
-    "Cảm ơn bạn đã luôn là chính mình và tuyệt vời như vậy! 🌟",
+    "Cảm ơn bạn đã luôn là chính mình và tuyệt vời như vậy! ✨",
     "Mong rằng mỗi khoảnh khắc đều mang lại niềm vui cho bạn! 🎉",
     "Tớ luôn ở đây để ủng hộ bạn trên mọi hành trình! 🚀",
     "Yêu bạn nhiều lắm luôn đó! 😘",
-    "Anh iu emmmmm ❤️❤️❤️"
+    "Anh iu emmmmm ❤️ ❤️ ❤️"
   ];
-  
+
   const [index, setIndex] = useState(0);
+
   const nextMessage = () => {
     if (index < messages.length - 1) setIndex(index + 1);
   };
-  
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-pink-100 p-4">
-      <motion.div 
-        className="relative bg-white shadow-lg rounded-xl p-6 max-w-sm text-center border-2 border-pink-300"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-pink-200 to-pink-400 p-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
+        className="bg-white shadow-2xl rounded-2xl p-6 border-4 border-pink-500 w-full max-w-md relative"
       >
-        <p className="text-lg font-semibold text-pink-700">{messages[index]}</p>
-        {index < messages.length - 1 && (
-          <button 
-            onClick={nextMessage} 
-            className="mt-4 px-4 py-2 bg-pink-500 text-white rounded-full shadow-md hover:bg-pink-600"
-          >
-            Tiếp tục
-          </button>
-        )}
+        <div className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 bg-pink-500 text-white px-4 py-1 rounded-full shadow-md">💌 Thư Yêu Thương 💌</div>
+        <p className="text-pink-700 text-lg font-semibold text-center mt-6">{messages[index]}</p>
       </motion.div>
+      {index < messages.length - 1 && (
+        <button
+          onClick={nextMessage}
+          className="mt-6 px-8 py-3 bg-pink-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-pink-700 transform transition-all active:scale-90"
+        >
+          Tiếp tục 💕
+        </button>
+      )}
     </div>
   );
 }
