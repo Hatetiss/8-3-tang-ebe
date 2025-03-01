@@ -3,78 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc Mừng 8/3 💖</title>
+    <title>Thư 8/3 Đặc Biệt</title>
     <style>
         body {
-            background-color: #ffdde1;
+            background-color: pink;
             text-align: center;
             font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-        h1 {
-            color: #d63384;
-            margin-top: 50px;
-        }
-        .message {
-            display: none;
-            font-size: 22px;
-            color: #e60073;
-            margin-top: 20px;
-            animation: fadeIn 2s ease-in-out;
-        }
-        button {
-            padding: 12px 20px;
-            font-size: 18px;
-            background: #ff4d79;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background: #e6005c;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         .heart {
-            position: absolute;
             color: red;
-            font-size: 20px;
-            animation: floatUp 4s infinite;
+            font-size: 50px;
+            animation: heartbeat 1s infinite;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .letter {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 200px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .show {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>💖 Chúc Mừng 8/3 💖</h1>
-    <button onclick="showMessage()">Bấm để xem thư</button>
-    <p class="message">Chúc bạn có một ngày 8/3 đầy hạnh phúc và yêu thương! 🌸💐</p>
-
+    <h1 class="heart">❤</h1>
+    <button onclick="openLetter()">Nhấn vào đây</button>
+    <div id="letter" class="letter">
+        <h2>Thư Gửi Em 💌</h2>
+        <p>Chúc em 8/3 vui vẻ, luôn xinh đẹp và hạnh phúc! 💖</p>
+    </div>
     <script>
-        function showMessage() {
-            document.querySelector(".message").style.display = "block";
+        function openLetter() {
+            document.getElementById("letter").classList.add("show");
         }
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            document.body.appendChild(heart);
-            
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = "100vh";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
-        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
