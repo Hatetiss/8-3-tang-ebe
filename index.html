@@ -3,122 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư yêu thương</title>
+    <title>Thư 8/3</title>
     <style>
         body {
-            background: url('https://www.transparenttextures.com/patterns/hearts.png');
-            background-color: #ffe6eb;
-            text-align: center;
+            background: linear-gradient(135deg, #ffd6e0, #ffb6c1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         .container {
-            margin-top: 50px;
+            text-align: center;
         }
-        .heart {
-            font-size: 50px;
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .btn {
-            background: linear-gradient(45deg, #ff4b5c, #ff6b81);
+        .button {
+            background: linear-gradient(90deg, #ff5e62, #ff9966);
             color: white;
-            padding: 15px 20px;
-            font-size: 18px;
             border: none;
-            border-radius: 10px;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 25px;
             cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             transition: 0.3s;
         }
-        .btn:hover {
-            background: #ff2e44;
+        .button:hover {
+            transform: scale(1.1);
         }
         .letter {
             display: none;
             background: white;
             padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border: 2px solid #ff4b5c;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            text-align: center;
+            width: 300px;
             position: relative;
         }
         .letter::before {
-            content: '';
+            content: "";
+            width: 100%;
+            height: 5px;
+            background: pink;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .decor {
             position: absolute;
-            top: 10px;
-            left: 50%;
-            width: 80%;
-            height: 1px;
-            background: #ccc;
-            transform: translateX(-50%);
-        }
-        .next-btn {
-            background: #ff7b9c;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .falling-flowers {
-            position: fixed;
+            width: 100%;
+            height: 100%;
             top: 0;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: url('https://www.pngmart.com/files/21/Cherry-Blossom-PNG-Transparent.png') no-repeat center;
-            background-size: contain;
+            left: 0;
+            pointer-events: none;
+        }
+        .falling {
+            position: absolute;
+            color: pink;
+            font-size: 24px;
+            opacity: 0.8;
             animation: fall 3s linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(-100vh) translateX(0); opacity: 1; }
-            100% { transform: translateY(100vh) translateX(-30px); opacity: 0; }
+            from { transform: translateY(-100vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="heart">❤️</div>
-        <button class="btn" onclick="showLetter()">Mời ebe nhấn vào đây</button>
+        <button class="button" onclick="showLetter()">Mời ebe nhấn vào đây</button>
         <div class="letter" id="letter">
-            <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
-            <button class="next-btn" onclick="nextEffect()">Bấm tiếp</button>
+            <p>Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
+            <button class="button" onclick="addEffect()">Bấm tiếp</button>
         </div>
     </div>
-
+    <div class="decor" id="decor"></div>
     <script>
         function showLetter() {
             document.getElementById('letter').style.display = 'block';
-            createFlowers();
         }
-        function createFlowers() {
-            for (let i = 0; i < 10; i++) {
-                let flower = document.createElement('div');
-                flower.className = 'falling-flowers';
-                flower.style.left = Math.random() * 100 + 'vw';
-                flower.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.body.appendChild(flower);
-                setTimeout(() => flower.remove(), 3000);
-            }
-        }
-        let messages = [
-            "Bạn là người tuyệt vời nhất mà t từng gặp! ❤️",
-            "Mỗi ngày bên bạn là một niềm vui! 😊",
-            "Chúc bạn luôn xinh đẹp và rạng rỡ như ánh mặt trời! ☀️",
-            "Mãi yêu thương bạn! 💕"
-        ];
-        let index = 0;
-        function nextEffect() {
-            index = (index + 1) % messages.length;
-            document.getElementById('message').innerText = messages[index];
-            createFlowers();
+        function addEffect() {
+            let decor = document.getElementById('decor');
+            let icon = ['💖', '🌸', '💕', '🌹'][Math.floor(Math.random() * 4)];
+            let element = document.createElement('div');
+            element.className = 'falling';
+            element.innerHTML = icon;
+            element.style.left = Math.random() * 100 + 'vw';
+            decor.appendChild(element);
+            setTimeout(() => decor.removeChild(element), 3000);
         }
     </script>
 </body>
