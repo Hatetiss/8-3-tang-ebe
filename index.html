@@ -14,6 +14,8 @@
             height: 100vh;
             font-family: 'Arial', sans-serif;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         .heart {
             font-size: 50px;
@@ -43,8 +45,7 @@
         }
         .letter {
             display: none;
-            width: 300px;
-            height: 200px;
+            width: 350px;
             background: #fff8dc;
             border: 2px solid #ffb6c1;
             padding: 20px;
@@ -52,33 +53,65 @@
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .letter::before {
-            content: '\"';
-            font-size: 40px;
-            position: absolute;
-            top: -20px;
-            left: 10px;
-            color: #ff416c;
+        .letter p {
+            font-size: 18px;
+            color: #d6336c;
         }
-        .letter::after {
-            content: '\"';
-            font-size: 40px;
+        .next-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ff85a2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .next-btn:hover {
+            background-color: #ff4b6e;
+        }
+        .falling-flowers {
             position: absolute;
-            bottom: -20px;
-            right: 10px;
-            color: #ff416c;
+            top: -50px;
+            font-size: 30px;
+            color: pink;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="heart">❤️</div>
-    <button class="button" onclick="showLetter()">Nhấn vào đây</button>
+    <button class="button" onclick="startEffect()">Mời ebe nhấn vào đây</button>
     <div class="letter" id="letter">
-        <p>hi em! 💖</p>
+        <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
+        <button class="next-btn" onclick="nextMessage()">Bấm tiếp</button>
     </div>
     <script>
-        function showLetter() {
+        let messages = [
+            "Bạn là người tuyệt vời nhất! 🌸",
+            "Hôm nay là ngày của bạn, hãy luôn tươi cười nhé! 😊",
+            "Gửi đến bạn những điều ngọt ngào nhất! 🍫💐",
+            "Cảm ơn vì đã luôn tỏa sáng như ánh mặt trời! ☀️💖"
+        ];
+        let index = 0;
+        function startEffect() {
             document.getElementById("letter").style.display = "block";
+            for (let i = 0; i < 30; i++) {
+                let flower = document.createElement("div");
+                flower.innerHTML = "🌸";
+                flower.className = "falling-flowers";
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(flower);
+                setTimeout(() => { flower.remove(); }, 5000);
+            }
+        }
+        function nextMessage() {
+            index = (index + 1) % messages.length;
+            document.getElementById("message").innerText = messages[index];
         }
     </script>
 </body>
