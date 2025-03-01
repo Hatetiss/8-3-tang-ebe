@@ -1,46 +1,97 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import "tailwindcss/tailwind.css";
-
-export default function LoveLetter() {
-  const messages = [
-    "Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖",
-    "Bạn là người đặc biệt và xứng đáng nhận được những điều tốt đẹp nhất! 🥰",
-    "Hy vọng ngày hôm nay sẽ ngập tràn nụ cười và niềm vui! 🌸",
-    "Chúc bạn luôn mạnh khỏe, may mắn và thành công trong mọi điều! ❤️",
-    "Mỗi ngày bên bạn là một ngày hạnh phúc! 💕",
-    "Cảm ơn bạn đã luôn là chính mình và tuyệt vời như vậy! ✨",
-    "Mong rằng mỗi khoảnh khắc đều mang lại niềm vui cho bạn! 🎉",
-    "Tớ luôn ở đây để ủng hộ bạn trên mọi hành trình! 🚀",
-    "Yêu bạn nhiều lắm luôn đó! 😘",
-    "Anh iu emmmmm ❤️ ❤️ ❤️"
-  ];
-
-  const [index, setIndex] = useState(0);
-
-  const nextMessage = () => {
-    if (index < messages.length - 1) setIndex(index + 1);
-  };
-
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-pink-200 to-pink-400 p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white shadow-2xl rounded-2xl p-6 border-4 border-pink-500 w-full max-w-md relative"
-      >
-        <div className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 bg-pink-500 text-white px-4 py-1 rounded-full shadow-md">💌 Thư Yêu Thương 💌</div>
-        <p className="text-pink-700 text-lg font-semibold text-center mt-6">{messages[index]}</p>
-      </motion.div>
-      {index < messages.length - 1 && (
-        <button
-          onClick={nextMessage}
-          className="mt-6 px-8 py-3 bg-pink-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-pink-700 transform transition-all active:scale-90"
-        >
-          Tiếp tục 💕
-        </button>
-      )}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư 8/3 Dành Cho Ebe 💖</title>
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?flowers') no-repeat center center/cover;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        #openBtn, #nextBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background: #ff66b2;
+            color: white;
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 20px;
+        }
+        #letter {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            width: 60%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .falling {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <button id="openBtn">Mời ebe nhấn vào đây</button>
+    <div id="letter">
+        <h2>Gửi Ebe Yêu Dấu 💌</h2>
+        <p id="content">Hôm nay là ngày 8/3, anh chúc ebe lúc nào cũng vui vẻ, xinh đẹp và đáng yêu như bây giờ nha! 💖</p>
+        <button id="nextBtn">Tiếp tục 💕</button>
     </div>
-  );
-}
+    
+    <script>
+        const messages = [
+            "Chúc ebe luôn cười tươi như hoa nhé! 🌸",
+            "Mỗi ngày của ebe đều tràn đầy hạnh phúc! 💫",
+            "Anh lúc nào cũng sẽ bên cạnh bảo vệ ebe! 🛡️",
+            "Chúc ebe một ngày 8/3 thật ngọt ngào! 🍬",
+            "Mãi là cô gái xinh đẹp nhất trong lòng anh nha! 😘",
+            "Tặng ebe một rừng hoa nè! 🌷🌹🌻",
+            "Yêu ebe 3000 lần luôn á! ❤️",
+            "Nhớ giữ gìn sức khỏe nghen! 💕",
+            "Mỗi ngày có anh thì ebe sẽ hạnh phúc hơn nè! 😍",
+            "Anh iu ebe nhiều lắm đó nha! 💖"
+        ];
+        let index = 0;
+        
+        document.getElementById("openBtn").addEventListener("click", function() {
+            this.style.display = "none";
+            document.getElementById("letter").style.display = "block";
+            createEffect("🌸");
+        });
+        
+        document.getElementById("nextBtn").addEventListener("click", function() {
+            if (index < messages.length - 1) {
+                index++;
+                document.getElementById("content").innerHTML = messages[index];
+                createEffect(index % 2 === 0 ? "❤️" : "✨");
+            } else {
+                alert("Hết thư rồi nè! 😘");
+            }
+        });
+        
+        function createEffect(symbol) {
+            for (let i = 0; i < 20; i++) {
+                let element = document.createElement("div");
+                element.innerHTML = symbol;
+                element.classList.add("falling");
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(element);
+                setTimeout(() => element.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
