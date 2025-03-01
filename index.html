@@ -3,120 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư 8/3</title>
+    <title>Thư yêu thương</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ffdde1 25%, #ee9ca7 100%);
-            background-image: url('https://www.transparenttextures.com/patterns/hearts.png'); /* Họa tiết trái tim nhẹ */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/hearts.png');
+            background-color: #ffe6eb;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
         }
         .heart {
             font-size: 50px;
-            animation: heartbeat 1s infinite;
-            color: red;
+            animation: pulse 1s infinite;
         }
-        @keyframes heartbeat {
+        @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-        .button {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            border: none;
-            padding: 15px 30px;
-            font-size: 20px;
+        .btn {
+            background: linear-gradient(45deg, #ff4b5c, #ff6b81);
             color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
-        .button:hover {
-            transform: scale(1.1);
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        .btn:hover {
+            background: #ff2e44;
         }
         .letter {
             display: none;
-            width: 350px;
-            background: #fff8dc;
-            border: 2px solid #ffb6c1;
+            background: white;
             padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #ff4b5c;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            text-align: left;
-            line-height: 1.6;
-            background-image: linear-gradient(white 98%, #ffd6e0 2%);
-            background-size: 100% 30px;
         }
-        .letter p {
-            font-size: 18px;
-            color: #d6336c;
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 80%;
+            height: 1px;
+            background: #ccc;
+            transform: translateX(-50%);
         }
         .next-btn {
-            margin-top: 15px;
-            padding: 10px;
-            background-color: #ff85a2;
+            background: #ff7b9c;
             color: white;
+            padding: 10px 15px;
             border: none;
+            border-radius: 8px;
             cursor: pointer;
-            border-radius: 5px;
-        }
-        .next-btn:hover {
-            background-color: #ff4b6e;
+            margin-top: 10px;
         }
         .falling-flowers {
-            position: absolute;
-            top: -50px;
-            font-size: 30px;
-            color: pink;
-            animation: fall linear infinite;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: url('https://www.pngmart.com/files/21/Cherry-Blossom-PNG-Transparent.png') no-repeat center;
+            background-size: contain;
+            animation: fall 3s linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(-50px); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            0% { transform: translateY(-100vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(-30px); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="heart">❤️</div>
-    <button class="button" onclick="startEffect()">Mời ebe nhấn vào đây</button>
-    <div class="letter" id="letter">
-        <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
-        <button class="next-btn" onclick="nextMessage()">Bấm tiếp</button>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <button class="btn" onclick="showLetter()">Mời ebe nhấn vào đây</button>
+        <div class="letter" id="letter">
+            <p id="message">Chúc mừng 8/3! Mong bạn luôn vui vẻ, hạnh phúc và tràn đầy yêu thương! 💖</p>
+            <button class="next-btn" onclick="nextEffect()">Bấm tiếp</button>
+        </div>
     </div>
+
     <script>
-        let messages = [
-            "Bạn là người tuyệt vời nhất! 🌸",
-            "Hôm nay là ngày của bạn, hãy luôn tươi cười nhé! 😊",
-            "Gửi đến bạn những điều ngọt ngào nhất! 🍫💐",
-            "Cảm ơn vì đã luôn tỏa sáng như ánh mặt trời! ☀️💖"
-        ];
-        let index = 0;
-        function startEffect() {
-            document.getElementById("letter").style.display = "block";
-            for (let i = 0; i < 30; i++) {
-                let flower = document.createElement("div");
-                flower.innerHTML = "🌸";
-                flower.className = "falling-flowers";
-                flower.style.left = Math.random() * 100 + "vw";
-                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        function showLetter() {
+            document.getElementById('letter').style.display = 'block';
+            createFlowers();
+        }
+        function createFlowers() {
+            for (let i = 0; i < 10; i++) {
+                let flower = document.createElement('div');
+                flower.className = 'falling-flowers';
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.animationDuration = (Math.random() * 2 + 2) + 's';
                 document.body.appendChild(flower);
-                setTimeout(() => { flower.remove(); }, 5000);
+                setTimeout(() => flower.remove(), 3000);
             }
         }
-        function nextMessage() {
+        let messages = [
+            "Bạn là người tuyệt vời nhất mà t từng gặp! ❤️",
+            "Mỗi ngày bên bạn là một niềm vui! 😊",
+            "Chúc bạn luôn xinh đẹp và rạng rỡ như ánh mặt trời! ☀️",
+            "Mãi yêu thương bạn! 💕"
+        ];
+        let index = 0;
+        function nextEffect() {
             index = (index + 1) % messages.length;
-            document.getElementById("message").innerText = messages[index];
+            document.getElementById('message').innerText = messages[index];
+            createFlowers();
         }
     </script>
 </body>
