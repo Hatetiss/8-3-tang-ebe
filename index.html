@@ -6,24 +6,31 @@
     <title>Thư 8/3 Dành Cho Ebe 💖</title>
     <style>
         body {
-            background: url('hnen.jpg') repeat;
+            background:url('background.jpg') repeat;
             background-size: cover;
             overflow: hidden;
             margin: 0;
+        }
+        #openBtn, #nextBtn {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #ff66b2;
+            color: white;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(255, 102, 178, 0.4);
+            transition: 0.3s;
+        }
+        #openBtn:hover, #nextBtn:hover {
+            background: #ff3385;
+            box-shadow: 0 6px 15px rgba(255, 51, 133, 0.5);
         }
         #openBtn {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 15px 25px;
-            font-size: 20px;
-            border: none;
-            background: #ff66b2;
-            color: white;
-            cursor: pointer;
-            border-radius: 25px;
-            box-shadow: 0 5px 15px rgba(255, 102, 178, 0.5);
         }
         #letter {
             display: none;
@@ -34,15 +41,6 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
-        }
-        .falling {
-            position: absolute;
-            font-size: 30px;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0); }
-            100% { transform: translateY(100vh) rotate(360deg); }
         }
     </style>
 </head>
@@ -72,30 +70,16 @@
         document.getElementById("openBtn").addEventListener("click", function() {
             this.style.display = "none";
             document.getElementById("letter").style.display = "block";
-            createEffect("🌸");
         });
         
         document.getElementById("nextBtn").addEventListener("click", function() {
             if (index < messages.length - 1) {
                 index++;
                 document.getElementById("content").innerHTML = messages[index];
-                createEffect(index % 2 === 0 ? "❤️" : "✨");
             } else {
                 alert("Iu My nhìuuuuu! 😘");
             }
         });
-        
-        function createEffect(symbol) {
-            for (let i = 0; i < 20; i++) {
-                let element = document.createElement("div");
-                element.innerHTML = symbol;
-                element.classList.add("falling");
-                element.style.left = Math.random() * 100 + "vw";
-                element.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                document.body.appendChild(element);
-                setTimeout(() => element.remove(), 5000);
-            }
-        }
     </script>
 </body>
 </html>
