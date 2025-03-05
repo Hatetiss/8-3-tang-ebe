@@ -11,15 +11,19 @@
             overflow: hidden;
             margin: 0;
         }
-        #openBtn, #nextBtn {
-            padding: 10px 20px;
-            font-size: 18px;
+        #openBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 25px;
+            font-size: 20px;
             border: none;
             background: #ff66b2;
             color: white;
             cursor: pointer;
-            border-radius: 20px;
-            margin: 20px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(255, 102, 178, 0.5);
         }
         #letter {
             display: none;
@@ -29,11 +33,11 @@
             margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
         }
         .falling {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            font-size: 30px;
             animation: fall linear infinite;
         }
         @keyframes fall {
@@ -52,7 +56,7 @@
     
     <script>
         const messages = [
-            "8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>. ",
+            "8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>.",
             "Nay là ngày 8/3 cũng là kỉ niệm 200 ngày ta iu nhau nên tht sự là rất đặc biệt đó nghee 🌸",
             "Đc 200 ngày rùi nhanh tht đó, nhớ lại ngày đầu tiên lúc mà My tỏ tình hat, tr ư cô nương ơi chủ động quá làm tui tay đập tim run đó nghe 💕",
             "Đồng thời cũng là 8/3 rùi, anh chúc em 8/3 này là 1 ngày tht tyẹt zời đặc biệt là mấy ngày sau cũng z, cứ qua 1 mốc là lại tuỵt zời hơn hạnh phúc hơn bên anh:>>",
