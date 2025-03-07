@@ -46,12 +46,11 @@
         .heart {
             position: fixed;
             font-size: 24px;
-            color: red;
             animation: floatHeart 2s linear forwards;
         }
         @keyframes floatHeart {
             0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+            100% { opacity: 0; transform: translateY(-150px) scale(1.5); }
         }
         /* Hoa rơi */
         .flower {
@@ -93,27 +92,30 @@
         document.getElementById("openBtn").addEventListener("click", function(event) {
             this.style.display = "none";
             document.getElementById("letter").style.display = "block";
-            createHeart(event.clientX, event.clientY);
+            createHearts(event.clientX, event.clientY);
         });
 
         document.getElementById("nextBtn").addEventListener("click", function(event) {
             if (index < messages.length - 1) {
                 index++;
                 document.getElementById("content").innerHTML = messages[index];
-                createHeart(event.clientX, event.clientY);
+                createHearts(event.clientX, event.clientY);
             } else {
                 alert("Iu My nhìuuuuu! 😘");
             }
         });
 
-        function createHeart(x, y) {
-            let heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "❤️";
-            heart.style.left = x + "px";
-            heart.style.top = y + "px";
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 2000);
+        function createHearts(x, y) {
+            for (let i = 0; i < 5; i++) { // Tạo 5 trái tim mỗi lần nhấn
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗"; // Chọn ngẫu nhiên giữa đỏ và hồng
+                heart.style.left = (x + (Math.random() * 40 - 20)) + "px"; // Rải đều quanh vị trí click
+                heart.style.top = (y + (Math.random() * 40 - 20)) + "px";
+                heart.style.animationDuration = (Math.random() * 1.5 + 1) + "s"; // Ngẫu nhiên tốc độ bay lên
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
         }
 
         function createFlower() {
