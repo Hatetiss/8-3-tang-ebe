@@ -42,6 +42,29 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
         }
+        /* Trái tim bay lên */
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            color: red;
+            animation: floatHeart 2s linear forwards;
+        }
+        @keyframes floatHeart {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+        }
+        /* Hoa rơi */
+        .flower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: url('flower.png') no-repeat center/contain;
+            animation: fall 4s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10%); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -51,7 +74,7 @@
         <p id="content">Hí Lô! hat có phương thức mới nì hì hì:>></p>
         <button id="nextBtn">Tiếp tục 💕</button>
     </div>
-    
+
     <script>
         const messages = [
             "8/3 rùi đó suy nghĩ hoài hong ra là mình có thể tặng quà gì, chúc bằng mess thì thông thường quá đúng hong nên là hat kì công xí tạo web để gửi lời tâm tình của hat đến cho My:>>.",
@@ -67,19 +90,43 @@
         ];
         let index = 0;
         
-        document.getElementById("openBtn").addEventListener("click", function() {
+        document.getElementById("openBtn").addEventListener("click", function(event) {
             this.style.display = "none";
             document.getElementById("letter").style.display = "block";
+            createHeart(event.clientX, event.clientY);
         });
-        
-        document.getElementById("nextBtn").addEventListener("click", function() {
+
+        document.getElementById("nextBtn").addEventListener("click", function(event) {
             if (index < messages.length - 1) {
                 index++;
                 document.getElementById("content").innerHTML = messages[index];
+                createHeart(event.clientX, event.clientY);
             } else {
                 alert("Iu My nhìuuuuu! 😘");
             }
         });
+
+        function createHeart(x, y) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = x + "px";
+            heart.style.top = y + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+        }
+
+        function createFlower() {
+            let flower = document.createElement("div");
+            flower.className = "flower";
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            flower.style.top = "-20px";
+            flower.style.animationDuration = (Math.random() * 3 + 3) + "s"; 
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 4000);
+        }
+
+        setInterval(createFlower, 500);
     </script>
 </body>
 </html>
